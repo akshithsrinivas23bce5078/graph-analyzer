@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="card">
+    <h2>Graph & Analysis</h2>
+
+    <h3>Selected columns</h3>
+    <p><strong>X-axis:</strong> {{ x_col }} | <strong>Y-axis:</strong> {{ y_col }}</p>
+
+    <h3>Graph</h3>
+    <img src="data:image/png;base64,{{ plot_png }}" alt="Graph">
+
+    <h3>Basic statistics for {{ y_col }}</h3>
+    <table>
+      <tr><th>Count</th><td>{{ stats['count'] | round(0) }}</td></tr>
+      <tr><th>Mean</th><td>{{ stats['mean'] | round(2) }}</td></tr>
+      <tr><th>Std Dev</th><td>{{ stats['std'] | round(2) }}</td></tr>
+      <tr><th>Min</th><td>{{ stats['min'] | round(2) }}</td></tr>
+      <tr><th>25%</th><td>{{ stats['25%'] | round(2) }}</td></tr>
+      <tr><th>50% (Median)</th><td>{{ stats['50%'] | round(2) }}</td></tr>
+      <tr><th>75%</th><td>{{ stats['75%'] | round(2) }}</td></tr>
+      <tr><th>Max</th><td>{{ stats['max'] | round(2) }}</td></tr>
+    </table>
+
+    <h3>How to interpret this graph</h3>
+    <ul>
+      {% for line in analysis_text %}
+        <li>{{ line }}</li>
+      {% endfor %}
+    </ul>
+
+    <p>
+      In simple terms, look at:
+    </p>
+    <ol>
+      <li>Overall direction of the line (up, down, or flat)</li>
+      <li>How spread out the values are (standard deviation)</li>
+      <li>Where the minimum and maximum points occur</li>
+    </ol>
+
+    <a href="{{ url_for('index') }}">Analyze another file</a>
+  </section>
+{% endblock %}

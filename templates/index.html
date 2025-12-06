@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+  <section class="card">
+    <h2>Upload CSV file</h2>
+    <p>
+      Upload a CSV file containing numeric columns. The app will plot a graph and explain it.
+      Example structure:
+    </p>
+    <pre>
+time,value
+1,10
+2,15
+3,12
+4,18
+5,20
+    </pre>
+
+    <form method="post" enctype="multipart/form-data">
+      <label for="file">Choose CSV file:</label>
+      <input type="file" id="file" name="file" accept=".csv" required>
+      <button type="submit">Analyze Graph</button>
+    </form>
+  </section>
+{% endblock %}
